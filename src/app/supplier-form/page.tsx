@@ -8,7 +8,7 @@ import {
   FormSelect,
   FormTextarea,
 } from "@/components/form/FormField";
-import { StateDistrictFields } from "@/components/form/GeoFields";
+import { StateCityFields } from "@/components/form/GeoFields";
 import { StorageTransportFields } from "@/components/form/StorageTransportFields";
 import { EXPERIENCE_OPTIONS } from "@/lib/formOptions";
 
@@ -45,14 +45,13 @@ export default function SupplierFormPage() {
           />
           <FormInput label="Email Address" name="email" type="email" required />
           <FormTextarea label="Current Address" name="currentAddress" required />
-          <StateDistrictFields
+          <StateCityFields
             stateName="state"
             stateLabel="Select State"
-            districtName="district"
-            districtLabel="Select District"
+            cityName="city"
+            cityLabel="Select City"
             required
           />
-          <FormSelect label="Select Taluka" name="taluka" options={["Not Listed"]} required />
           <FormInput label="Pin Code" name="pinCode" pattern={PIN_PATTERN} title={PIN_TITLE} />
           <FormTextarea label="Educational Detail" name="education" required />
         </FormSection>

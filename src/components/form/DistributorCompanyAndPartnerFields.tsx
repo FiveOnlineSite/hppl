@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FormInput, FormRadioGroup, FormSection, FormTextarea } from "@/components/form/FormField";
-import { StateDistrictCityFields } from "@/components/form/GeoFields";
+import { StateCityFields } from "@/components/form/GeoFields";
 import { FIRM_TYPE_OPTIONS } from "@/lib/formOptions";
 
 const DOB_MAX = new Date().toISOString().split("T")[0];
@@ -16,11 +16,9 @@ export function DistributorCompanyAndPartnerFields() {
         <FormInput label="Company Name" name="companyName" required />
         <FormInput label="Company Email Address" name="companyEmail" type="email" required />
         <FormTextarea label="Company Address" name="companyAddress" required />
-        <StateDistrictCityFields
+        <StateCityFields
           stateName="companyAddressState"
           stateLabel="Company Address State"
-          districtName="companyAddressDistrict"
-          districtLabel="Company Address District"
           cityName="companyAddressCity"
           cityLabel="Company Address City"
           required
@@ -55,11 +53,9 @@ export function DistributorCompanyAndPartnerFields() {
           />
           <FormInput label="Partner Email Address" name="partnerEmail" type="email" />
           <FormTextarea label="Partner Current Address" name="partnerAddress" />
-          <StateDistrictCityFields
+          <StateCityFields
             stateName="partnerAddressState"
             stateLabel="Partner Address State"
-            districtName="partnerAddressDistrict"
-            districtLabel="Partner Address District"
             cityName="partnerAddressCity"
             cityLabel="Partner Address City"
           />

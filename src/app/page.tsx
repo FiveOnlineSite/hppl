@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { InquiryPageShell } from "@/components/form/InquiryPageShell";
 import { InquiryFormShell } from "@/components/form/InquiryFormShell";
 import { FormInput, FormSection, FormSelect, FormTextarea } from "@/components/form/FormField";
-import { StateDistrictCityFields } from "@/components/form/GeoFields";
+import { StateCityFields } from "@/components/form/GeoFields";
 import { StorageTransportFields } from "@/components/form/StorageTransportFields";
 import { DistributorCompanyAndPartnerFields } from "@/components/form/DistributorCompanyAndPartnerFields";
 import { INVESTMENT_CAPACITY_OPTIONS, WORKING_CAPITAL_OPTIONS } from "@/lib/formOptions";
@@ -24,11 +24,9 @@ export default function Home() {
     <InquiryPageShell description="Join Hindustan Pencils' distribution network and grow your business with one of India's largest stationery manufacturers. Please share your details below.">
       <InquiryFormShell action="/api/distributor-inquiry" submitLabel="Submit Inquiry">
         <FormSection title="Desired Area for Agency">
-          <StateDistrictCityFields
+          <StateCityFields
             stateName="desiredAreaState"
             stateLabel="Desired Area State"
-            districtName="desiredAreaDistrict"
-            districtLabel="Desired Area District"
             cityName="desiredAreaCity"
             cityLabel="Desired Area City"
             required
@@ -50,11 +48,9 @@ export default function Home() {
           />
           <FormInput label="Email Address" name="email" type="email" required />
           <FormTextarea label="Current Address" name="currentAddress" required />
-          <StateDistrictCityFields
+          <StateCityFields
             stateName="currentAddressState"
             stateLabel="Current Address State"
-            districtName="currentAddressDistrict"
-            districtLabel="Current Address District"
             cityName="currentAddressCity"
             cityLabel="Current Address City"
             required

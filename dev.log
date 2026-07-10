@@ -1,0 +1,24 @@
+
+> hindustan-pencil@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.30:3000
+✓ Ready in 3.0s
+
+○ Compiling / ...
+ GET / 200 in 21.7s (next.js: 19.3s, application-code: 2.5s)
+ GET / 200 in 242ms (next.js: 16ms, application-code: 226ms)
+ GET /distributor-agency-inquiry 200 in 2.2s (next.js: 1505ms, application-code: 731ms)
+ GET /import-export-inquiry 200 in 1591ms (next.js: 1314ms, application-code: 277ms)
+ GET /supplier-form 200 in 1924ms (next.js: 1333ms, application-code: 591ms)
+ GET /distributor-agency-inquiry 200 in 590ms (next.js: 17ms, application-code: 573ms)
+ GET /distributor-agency-inquiry 200 in 576ms (next.js: 19ms, application-code: 558ms)
+ GET /supplier-form 200 in 536ms (next.js: 30ms, application-code: 506ms)
+ GET / 200 in 271ms (next.js: 26ms, application-code: 245ms)
+ GET / 200 in 257ms (next.js: 19ms, application-code: 238ms)
+[Supplier Form] New submission: { firstName: 'Test', lastName: 'User' }
+ POST /api/supplier-form 200 in 1343ms (next.js: 1242ms, application-code: 101ms)
+ GET / 200 in 165ms (next.js: 8ms, application-code: 157ms)
+[?25h

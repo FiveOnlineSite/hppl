@@ -13,9 +13,9 @@ import { StorageTransportFields } from "@/components/form/StorageTransportFields
 import { EXPERIENCE_OPTIONS } from "@/lib/formOptions";
 
 export const metadata: Metadata = {
-  title: "Supplier Form | Hindustan Pencils",
+  title: "Super Stockist | Hindustan Pencils",
   description:
-    "Become a supplier for Hindustan Pencils, one of India's largest stationery manufacturers, and join a decades-long legacy.",
+    "Become a super stockist for Hindustan Pencils, one of India's largest stationery manufacturers, and join a decades-long legacy.",
 };
 
 const MOBILE_PATTERN = "[6-9][0-9]{9}";
@@ -26,10 +26,10 @@ const YEAR_PATTERN = "[0-9]{4}";
 const YEAR_TITLE = "Enter a 4-digit year";
 const DOB_MAX = new Date().toISOString().split("T")[0];
 
-export default function SupplierFormPage() {
+export default function SuperStockistPage() {
   return (
-    <InquiryPageShell description="Become a supplier for Hindustan Pencils and join a decades-long legacy of trusted stationery manufacturing. Please share your details below.">
-      <InquiryFormShell action="/api/supplier-form" submitLabel="Submit Application">
+    <InquiryPageShell description="Become a super stockist for Hindustan Pencils and join a decades-long legacy of trusted stationery manufacturing. Please share your details below.">
+      <InquiryFormShell action="/api/super-stockist" submitLabel="Submit Application">
         <FormSection title="Personal Information">
           <FormInput label="First Name" name="firstName" required />
           <FormInput label="Middle Name" name="middleName" />

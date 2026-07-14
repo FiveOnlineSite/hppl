@@ -6,14 +6,14 @@ export async function POST(request: NextRequest) {
 
   try {
     await sendInquiryEmails({
-      formName: "Import / Export Inquiry",
+      formName: "Export Inquiry",
       data,
       recipientEmail: typeof data.email === "string" ? data.email : undefined,
       recipientName: typeof data.fullName === "string" ? data.fullName : undefined,
     });
     return NextResponse.json({ ok: true });
   } catch (error) {
-    console.error("[Import / Export Inquiry] Failed to send email:", error);
+    console.error("[Export Inquiry] Failed to send email:", error);
     return NextResponse.json({ ok: false }, { status: 500 });
   }
 }

@@ -1,8 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendInquiryEmails } from "@/lib/mailer";
+import { connectToDatabase } from "@/backend/db";
+import { DistributorEnquiryModel, DISTRIBUTOR_ENQUIRY_FIELDS } from "@/backend/models/DistributorEnquiry";
+import { pickStrings } from "@/backend/utils/sanitize";
 
 export async function POST(request: NextRequest) {
   const data = await request.json();
+
+  try {
+    await connectToDatabase();
+    await DistributorEnquiryModel.create(pickStrings(data, DISTRIBUTOR_ENQUIRY_FIELDS));
+  } catch (error) {
+    console.error("[Distributor / Agency Inquiry] Failed to save enquiry:", error);
+  }
 
   try {
     await sendInquiryEmails({

@@ -47,7 +47,6 @@ export const footerLinkColumns = [
 
 export const inquiryLinks = [
   { label: "Distributor Inquiry", href: "/" },
-  { label: "Export Inquiry", href: "/export-inquiry" },
   { label: "Super Stockist", href: "/super-stockist" },
 ];
 

@@ -20,6 +20,7 @@ export function StateCityFields({
   required?: boolean;
 }) {
   const [state, setState] = useState("");
+  const [stateOptions, setStateOptions] = useState<string[]>(INDIAN_STATES);
   const [cities, setCities] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -27,6 +28,22 @@ export function StateCityFields({
     setState(value);
     setLoading(Boolean(value));
   }
+
+  // Enhance the static list with any states an admin added in the master.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/geo/india-states")
+      .then((res) => (res.ok ? res.json() : { states: INDIAN_STATES }))
+      .then((data) => {
+        if (!cancelled && Array.isArray(data.states) && data.states.length) {
+          setStateOptions(data.states);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!state) return;
@@ -53,7 +70,7 @@ export function StateCityFields({
         label={stateLabel}
         name={stateName}
         required={required}
-        options={[...INDIAN_STATES, NOT_LISTED]}
+        options={[...stateOptions, NOT_LISTED]}
         placeholder="Select a state"
         onChange={(e) => handleStateChange(e.target.value)}
       />
@@ -90,6 +107,7 @@ export function CountryStateCityFields({
   defaultCountry?: string;
 }) {
   const [country, setCountry] = useState(defaultCountry ?? "");
+  const [countryOptions, setCountryOptions] = useState<string[]>(COUNTRIES);
   const [state, setState] = useState("");
   const [states, setStates] = useState<string[]>([]);
   const [statesLoading, setStatesLoading] = useState(Boolean(defaultCountry));
@@ -106,6 +124,22 @@ export function CountryStateCityFields({
     setState(value);
     setCitiesLoading(Boolean(value));
   }
+
+  // Enhance the static list with any countries an admin added in the master.
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/geo/countries")
+      .then((res) => (res.ok ? res.json() : { countries: COUNTRIES }))
+      .then((data) => {
+        if (!cancelled && Array.isArray(data.countries) && data.countries.length) {
+          setCountryOptions(data.countries);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!country) return;
@@ -154,7 +188,7 @@ export function CountryStateCityFields({
         name={countryName}
         required={required}
         defaultValue={defaultCountry}
-        options={[...COUNTRIES, NOT_LISTED]}
+        options={[...countryOptions, NOT_LISTED]}
         placeholder="Select a country"
         onChange={(e) => handleCountryChange(e.target.value)}
       />

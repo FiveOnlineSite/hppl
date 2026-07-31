@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { City, Country, State } from "country-state-city";
+import { getCustomCityNames, mergeUniqueSorted } from "@/backend/services/locationMaster";
 
 const CITY_LIMIT = 3000;
 const NOT_LISTED = "not listed";
@@ -46,15 +47,32 @@ export async function GET(request: NextRequest) {
   const countryName = (searchParams.get("country") ?? "").trim();
   const stateName = (searchParams.get("state") ?? "").trim();
 
-  const countryIso = countryIsoByName.get(countryName.toLowerCase());
-  if (!countryIso) return NextResponse.json({ cities: [] });
+  const hasRealState = Boolean(stateName) && stateName.toLowerCase() !== NOT_LISTED;
 
-  if (stateName && stateName.toLowerCase() !== NOT_LISTED) {
-    const stateIso = getStateIso(countryIso, stateName);
-    if (stateIso) {
-      return NextResponse.json({ cities: getCitiesForState(countryIso, stateIso).slice(0, CITY_LIMIT) });
+  // Admin-added cities are keyed by (country, state); only merge them when a
+  // concrete state was chosen.
+  let custom: string[] = [];
+  if (hasRealState) {
+    try {
+      custom = await getCustomCityNames(countryName, stateName);
+    } catch (error) {
+      console.error("[Geo] Failed to load custom cities:", error);
     }
   }
 
-  return NextResponse.json({ cities: getCitiesForCountry(countryIso).slice(0, CITY_LIMIT) });
+  const countryIso = countryIsoByName.get(countryName.toLowerCase());
+  let libraryCities: string[] = [];
+  if (countryIso) {
+    if (hasRealState) {
+      const stateIso = getStateIso(countryIso, stateName);
+      libraryCities = stateIso
+        ? getCitiesForState(countryIso, stateIso)
+        : getCitiesForCountry(countryIso);
+    } else {
+      libraryCities = getCitiesForCountry(countryIso);
+    }
+  }
+
+  const cities = mergeUniqueSorted(libraryCities.slice(0, CITY_LIMIT), custom);
+  return NextResponse.json({ cities });
 }

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { City, State } from "country-state-city";
+import { getCustomCityNames, INDIA, mergeUniqueSorted } from "@/backend/services/locationMaster";
 
 const CITY_LIMIT = 2000;
 
@@ -26,12 +27,20 @@ function getCitiesForState(isoCode: string) {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const rawStateName = (searchParams.get("state") ?? "").trim().toLowerCase();
-  const normalized = STATE_NAME_OVERRIDES[rawStateName] ?? rawStateName;
+  const stateName = (searchParams.get("state") ?? "").trim();
+  if (!stateName) return NextResponse.json({ cities: [] });
 
+  const normalized = STATE_NAME_OVERRIDES[stateName.toLowerCase()] ?? stateName.toLowerCase();
   const isoCode = stateIsoByName.get(normalized);
-  if (!isoCode) return NextResponse.json({ cities: [] });
+  const libraryCities = isoCode ? getCitiesForState(isoCode).slice(0, CITY_LIMIT) : [];
 
-  const cities = getCitiesForState(isoCode).slice(0, CITY_LIMIT);
-  return NextResponse.json({ cities });
+  // Merge admin-added cities for this state (keyed by the state's display name).
+  let custom: string[] = [];
+  try {
+    custom = await getCustomCityNames(INDIA, stateName);
+  } catch (error) {
+    console.error("[Geo] Failed to load custom India cities:", error);
+  }
+
+  return NextResponse.json({ cities: mergeUniqueSorted(libraryCities, custom) });
 }

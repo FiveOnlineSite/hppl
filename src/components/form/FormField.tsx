@@ -15,7 +15,7 @@ function FieldLabel({ label, required, htmlFor }: LabelProps) {
   );
 }
 
-const inputClasses =
+export const inputClasses =
   "w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition hover:border-slate-400 focus:border-red-600 focus:ring-4 focus:ring-red-100";
 
 type FormInputProps = InputHTMLAttributes<HTMLInputElement> & {

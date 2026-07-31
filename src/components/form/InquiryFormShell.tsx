@@ -22,10 +22,12 @@ export function InquiryFormShell({
   action,
   children,
   submitLabel = "Submit",
+  onReset,
 }: {
   action: string;
   children: ReactNode;
   submitLabel?: string;
+  onReset?: () => void;
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
@@ -74,6 +76,7 @@ export function InquiryFormShell({
           onClick={() => {
             setStatus("idle");
             setAttemptedSubmit(false);
+            onReset?.();
           }}
           className="mt-6 inline-flex items-center rounded-full border border-emerald-600 bg-white px-5 py-2.5 text-sm font-medium text-emerald-700 shadow-sm transition hover:bg-emerald-100"
         >
@@ -107,7 +110,10 @@ export function InquiryFormShell({
         </button>
         <button
           type="reset"
-          onClick={() => setAttemptedSubmit(false)}
+          onClick={() => {
+            setAttemptedSubmit(false);
+            onReset?.();
+          }}
           className="inline-flex items-center rounded-full border border-slate-300 px-6 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
         >
           Reset

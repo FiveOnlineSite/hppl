@@ -2,81 +2,138 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { navLinks } from "@/lib/site";
 
-export function Header() {
-  const [open, setOpen] = useState(false);
+const links = ["Home", "About Us", "Brands", "ESC", "Media & News", "Careers", "Channel Partners", "Contact"];
+const channelPartnerLinks = [
+  { label: "Distributors", href: "/distributor" },
+  { label: "Super Stockist", href: "/super-stockist" },
+  { label: "Export", href: "/export" },
+];
+
+export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPartnersOpen, setIsPartnersOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2">
+    <header className="w-full border-b border-slate-200 bg-white xl:relative">
+      <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-3 xl:h-auto xl:px-6 xl:py-4">
+        <Link href="/" aria-label="Hindustan Pencils home" className="shrink-0">
           <Image
             src="/images/logo.png"
             alt="Hindustan Pencils"
-            width={180}
-            height={48}
-            className="h-10 w-auto object-contain"
+            width={1536}
+            height={382}
             priority
+            className="h-auto w-32 xl:w-48"
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 lg:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-slate-700 transition hover:text-emerald-700"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
         <button
           type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-          className="inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 lg:hidden"
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+          onClick={() => setIsMenuOpen((current) => !current)}
+          className="flex h-7 w-7 items-center justify-center text-[#314446] xl:hidden"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="h-6 w-6">
-            {open ? (
-              <path
-                d="M6 6l12 12M18 6L6 18"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-            ) : (
-              <path
-                d="M4 6h16M4 12h16M4 18h16"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-              />
-            )}
-          </svg>
+          {isMenuOpen ? <X size={20} strokeWidth={1.75} /> : <Menu size={20} strokeWidth={1.75} />}
         </button>
-      </div>
 
-      {open && (
-        <nav className="border-t border-slate-200 bg-white px-4 py-3 lg:hidden">
-          <ul className="space-y-1">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-emerald-700"
-                >
-                  {link.label}
-                </Link>
+        <nav aria-label="Primary navigation" className="hidden xl:block">
+          <ul className="flex items-center gap-6 text-sm">
+            {links.map((label) => (
+              <li key={label} className={label === "Channel Partners" ? "group relative" : undefined}>
+                {label === "Channel Partners" ? (
+                  <>
+                    <button
+                      type="button"
+                      aria-haspopup="menu"
+                      aria-expanded={isPartnersOpen}
+                      onClick={() => setIsPartnersOpen((current) => !current)}
+                      className="flex items-center gap-1 rounded border border-red-500 px-4 py-2 font-medium text-red-600"
+                    >
+                      {label}
+                      <ChevronDown size={15} className="transition-transform group-hover:rotate-180" />
+                    </button>
+                    <ul className={`absolute right-0 top-full z-50 min-w-48 pt-2 ${isPartnersOpen ? "block" : "hidden group-hover:block group-focus-within:block"}`}>
+                      <li className="overflow-hidden rounded-md border border-slate-200 bg-white py-1 shadow-lg">
+                        {channelPartnerLinks.map((link) => (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={() => setIsPartnersOpen(false)}
+                            className="block whitespace-nowrap px-4 py-2.5 text-gray-700 transition hover:bg-slate-50 hover:text-red-600"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </li>
+                    </ul>
+                  </>
+                ) : (
+                  <Link href="#" className="text-gray-700 transition hover:text-red-600">
+                    {label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
         </nav>
-      )}
+      </div>
+
+      {isMenuOpen ? (
+        <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-slate-300 xl:hidden bg-white w-full">
+          <ul>
+            {links.map((label) => (
+              <li key={label} className="border-b border-slate-300 last:border-b-0">
+                {label === "Channel Partners" ? (
+                  <>
+                    <button
+                      type="button"
+                      aria-expanded={isPartnersOpen}
+                      onClick={() => setIsPartnersOpen((current) => !current)}
+                      className="flex w-full items-center justify-center gap-1 py-2 text-[11px] leading-none text-[#202b2c] transition hover:bg-slate-50"
+                    >
+                      {label}
+                      <ChevronDown size={13} className={isPartnersOpen ? "rotate-180" : undefined} />
+                    </button>
+                    {isPartnersOpen ? (
+                      <ul className="border-t border-slate-200 bg-slate-50">
+                        {channelPartnerLinks.map((link) => (
+                          <li key={link.href}>
+                            <Link
+                              href={link.href}
+                              onClick={() => {
+                                setIsPartnersOpen(false);
+                                setIsMenuOpen(false);
+                              }}
+                              className="block py-2 text-center text-[11px] text-slate-600 hover:text-red-600"
+                            >
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </>
+                ) : (
+                  <Link
+                    href="#"
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`block py-2 text-center text-[11px] leading-none transition hover:bg-slate-50 ${
+                      label === "Home" ? "text-[#c8242f]" : "text-[#202b2c]"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      ) : null}
     </header>
   );
 }

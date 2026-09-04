@@ -12,6 +12,7 @@ export const navLinks = [
   { label: "ESG", href: "/esg" },
   { label: "Media & News", href: "/media" },
   { label: "Careers", href: "/careers" },
+  { label: "Channel Partners", href: "/channel-partners" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -24,6 +25,7 @@ export const footerLinkColumns = [
       { label: "ESG", href: "/esg" },
       { label: "Media & News", href: "/media" },
       { label: "Careers", href: "/careers" },
+      { label: "Channel Partners", href: "/channel-partners" },
     ],
   },
   {

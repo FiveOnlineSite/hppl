@@ -4,8 +4,8 @@ import { useState } from "react";
 import { FormInput, FormRadioGroup } from "@/components/form/FormField";
 
 export function StorageTransportFields() {
-  const [storageFacility, setStorageFacility] = useState("");
-  const [transportFacility, setTransportFacility] = useState("");
+  const [storageFacility, setStorageFacility] = useState("No");
+  const [transportFacility, setTransportFacility] = useState("No");
 
   return (
     <>
@@ -13,6 +13,7 @@ export function StorageTransportFields() {
         label="Storage Facility Available"
         name="storage_facility_availability"
         options={["Yes", "No"]}
+        defaultValue="No"
         onValueChange={setStorageFacility}
       />
       {storageFacility === "Yes" && (
@@ -23,6 +24,7 @@ export function StorageTransportFields() {
         label="Transport Facilities Available"
         name="transport_facility_availability"
         options={["Yes", "No"]}
+        defaultValue="No"
         onValueChange={setTransportFacility}
       />
       {transportFacility === "Yes" && (

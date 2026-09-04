@@ -10,7 +10,7 @@ const YEAR_PATTERN = "[0-9]{4}";
 const YEAR_TITLE = "Enter a 4-digit year";
 
 export function DistributorCompanyAndPartnerFields() {
-  const [firmType, setFirmType] = useState("");
+  const [firmType, setFirmType] = useState("Proprietorship");
   return (
     <>
       <FormSection title="Company Information">
@@ -26,6 +26,7 @@ export function DistributorCompanyAndPartnerFields() {
           label="Firm Type"
           name="firm_type"
           options={FIRM_TYPE_OPTIONS}
+          defaultValue="Proprietorship"
           onValueChange={setFirmType}
         />
         <FormTextarea label="Company Address" name="company_address" required />

@@ -68,13 +68,14 @@ type FormTextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
   label: string;
   name: string;
   required?: boolean;
+  placeholder?: string;
 };
 
-export function FormTextarea({ label, name, required, ...props }: FormTextareaProps) {
+export function FormTextarea({ label, name, placeholder, required, ...props }: FormTextareaProps) {
   return (
     <div className="sm:col-span-2">
-      <FieldLabel label={label} required={required} htmlFor={name} />
-      <textarea id={name} name={name} required={required} rows={4} className={inputClasses} {...props} />
+      <FieldLabel label={label} required={required} htmlFor={name}/>
+      <textarea id={name} name={name} required={required}  placeholder={placeholder} rows={4} className={inputClasses} {...props} />
     </div>
   );
 }

@@ -78,23 +78,24 @@ export default function SuperStockistPage() {
          </FormSection>
 
         <FormSection title="Other Information">
-          <FormTextarea label="Product Details" name="product_details" required />
-          <FormInput label="Production Capacity" name="production_capacity" required />
-          <FormInput label="Production Method" name="production_method" required />
+          <FormTextarea label="Product Details" name="product_details" placeholder="What type of products does the party currently deal in?" required />
+          {/* <FormInput label="Production Capacity" name="production_capacity" required /> */}
+          {/* <FormInput label="Production Method" name="production_method" required /> */}
           <StorageTransportFields />
-          <FormRadioGroup
+          {/* <FormRadioGroup
             label="Product Sample Sent"
             name="sample_sent"
             options={["Yes", "No"]}
             required
-          />
+          /> */}
           <FormInput label="Current Business (FMCG and other businesses)" name="current_business" />
-          <FormInput label="Size of the business / Business in different companies" name="size_of_business" />
           <FormInput label="Primary contact person and their involvement" name="primary_contact_person" />
+          <FormTextarea label="Size of the business / Business in different companies" name="size_of_business" placeholder="Mention the approximate business value handled with different companies.
+Example: Lux – ₹25 Lac, Colgate – ₹50 Lac; Total Business – ₹75 Lac" />
           
-          <FormTextarea label="Current Super Stockist business details" name="business_details"  />
-          <FormTextarea label="Current investment and proposed investment for the new business" name="current_investment"  />
-          <FormTextarea label="Infrastructure details, including depot and transportation facilities" name="infrastructure_details"  />
+          <FormTextarea label="Current Super Stockist business details" name="business_details" placeholder="Name of the companies currently handled as a Super Stockist." />
+          <FormTextarea label="Current investment and proposed investment for the new business" name="current_investment" placeholder="Districts handled, Number of towns covered, Number of distributors, Number of sub-distributors" />
+          <FormTextarea label="Infrastructure details, including depot and transportation facilities" name="infrastructure_details" placeholder="Details of the available infrastructure, such as warehouse/storage facilities, office space, vehicles, manpower, etc." />
 
         </FormSection>
       </InquiryFormShell>

@@ -57,7 +57,7 @@ export default function Header() {
                       {label}
                       <ChevronDown size={15} className="transition-transform group-hover:rotate-180" />
                     </button>
-                    <ul className={`absolute right-0 top-full z-50 min-w-48 pt-2 ${isPartnersOpen ? "block" : "hidden group-hover:block group-focus-within:block"}`}>
+                    <ul className={`absolute left-0 top-full z-50 min-w-40 pt-2 ${isPartnersOpen ? "block" : "hidden group-hover:block group-focus-within:block"}`}>
                       <li className="overflow-hidden rounded-md border border-slate-200 bg-white py-1 shadow-lg">
                         {channelPartnerLinks.map((link) => (
                           <Link

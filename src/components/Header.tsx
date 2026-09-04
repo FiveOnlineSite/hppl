@@ -9,7 +9,7 @@ const links = ["Home", "About Us", "Brands", "ESC", "Media & News", "Careers", "
 const channelPartnerLinks = [
   { label: "Distributors", href: "/distributor" },
   { label: "Super Stockist", href: "/super-stockist" },
-  { label: "Export", href: "/export" },
+  { label: "Export", href: "https://hppl-export.fiveonline.in/" },
 ];
 
 export default function Header() {

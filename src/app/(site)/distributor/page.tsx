@@ -71,14 +71,16 @@ export default function Home() {
         <FormSection title="Other Business Information">
           <FormInput label="Other Experience" name="other_experience" />
           <FormInput label="Current Business (FMCG and other businesses)" name="current_business" />
-          <FormInput label="Size of the business / Business in different companies" name="size_of_business" />
-          <FormInput label="Primary contact person and their involvement" name="primary_contact_person" />
+         
           <StorageTransportFields />
           <FormSelect label="Investment Capacity" name="investment_capacity" options={INVESTMENT_CAPACITY_OPTIONS} />
           <FormSelect label="Working Capital" name="working_capital" options={WORKING_CAPITAL_OPTIONS} />
-          <FormTextarea label="Current Distributor business details" name="business_details"  />
+          <FormInput label="Primary contact person and their involvement" name="primary_contact_person" />
+           <FormTextarea label="Size of the business / Business in different companies" name="size_of_business" placeholder="Mention the approximate business value handled with different companies.
+Example: Lux – ₹25 Lac, Colgate – ₹50 Lac; Total Business – ₹75 Lac"/>
+<FormTextarea label="Current Distributor business details" name="business_details"  placeholder="Districts handled, Number of towns covered, Number of distributors, Number of sub-distributors" />
           <FormTextarea label="Current investment and proposed investment for the new business" name="current_investment"  />
-          <FormTextarea label="Infrastructure details, including depot and transportation facilities" name="infrastructure_details"  />
+          <FormTextarea label="Infrastructure details, including depot and transportation facilities" name="infrastructure_details" placeholder="Details of the available infrastructure, such as warehouse/storage facilities, office space, vehicles, manpower, etc." />
 
         </FormSection>
       </InquiryFormShell>

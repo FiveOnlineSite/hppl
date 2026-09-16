@@ -45,11 +45,11 @@ export default function SuperStockistPage() {
           />
           <FormInput label="Email Address" name="email" type="email" required />
           <FormTextarea label="Educational Detail" name="educational_details" required />
-          <FormInput label="Designation" name="designation" required />
-          <FormSelect label="Experience" name="experience" options={EXPERIENCE_OPTIONS} required />
-          <FormTextarea label="Work Profile" name="work_profile" required />
+          <FormInput label="Occupation" name="occupation"/>
+          <FormSelect label="Experience" name="experience" options={EXPERIENCE_OPTIONS} />
+          <FormTextarea label="Work Profile" name="work_profile" />
         
-          <FormTextarea label="Current Address" name="current_address" required />
+          <FormTextarea label="Current Address" name="current_address" />
           <StateCityFields
             stateName="current_state"
             stateLabel="Select State"
@@ -93,8 +93,8 @@ export default function SuperStockistPage() {
           <FormTextarea label="Size of the business / Business in different companies" name="size_of_business" placeholder="Mention the approximate business value handled with different companies.
 Example: Lux – ₹25 Lac, Colgate – ₹50 Lac; Total Business – ₹75 Lac" />
           
-          <FormTextarea label="Current Super Stockist business details" name="business_details" placeholder="Name of the companies currently handled as a Super Stockist." />
-          <FormTextarea label="Current investment and proposed investment for the new business" name="current_investment" placeholder="Districts handled, Number of towns covered, Number of distributors, Number of sub-distributors" />
+          <FormTextarea label="Current Super Stockist business details" name="business_details" placeholder="Districts handled, Number of towns covered, Number of distributors, Number of sub-distributors" />
+          <FormTextarea label="Current investment and proposed investment for the new business" name="current_investment"  />
           <FormTextarea label="Infrastructure details, including depot and transportation facilities" name="infrastructure_details" placeholder="Details of the available infrastructure, such as warehouse/storage facilities, office space, vehicles, manpower, etc." />
 
         </FormSection>

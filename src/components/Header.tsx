@@ -5,11 +5,18 @@ import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 
-const links = ["Home", "About Us", "Brands", "ESC", "Media & News", "Careers", "Channel Partners", "Contact"];
+const links = [  { label: "Home", href: "https://hindustanpencils.com/" },
+  { label: "About Us", href: "https://hindustanpencils.com/about-us" },
+  { label: "Brands", href: "https://hindustanpencils.com/our-brands" },
+  { label: "ESC", href: "https://hindustanpencils.com/esg" },
+  { label: "Media & News", href: "https://hindustanpencils.com/media-news" },
+  { label: "Career", href: "https://career.hindustanpencils.com/" },
+  { label: "Channel Partners" },
+  { label: "Contact", href: "https://hindustanpencils.com/contact" },];
 const channelPartnerLinks = [
-  { label: "Distributors", href: "/distributor" },
+  { label: "Distributors", href: "/distributors" },
   { label: "Super Stockist", href: "/super-stockist" },
-  { label: "Export", href: "https://hppl-export.fiveonline.in/" },
+  { label: "Export", href: "https://export.hindustanpencils.com" },
 ];
 
 export default function Header() {
@@ -19,7 +26,7 @@ export default function Header() {
   return (
     <header className="w-full border-b border-slate-200 bg-white xl:relative">
       <div className="mx-auto flex h-12 max-w-7xl items-center justify-between px-3 xl:h-auto xl:px-6 xl:py-4">
-        <Link href="/" aria-label="Hindustan Pencils home" className="shrink-0">
+        <Link href="https://hindustanpencils.com/" aria-label="Hindustan Pencils home" className="shrink-0">
           <Image
             src="/images/logo.png"
             alt="Hindustan Pencils"
@@ -43,9 +50,9 @@ export default function Header() {
 
         <nav aria-label="Primary navigation" className="hidden xl:block">
           <ul className="flex items-center gap-6 text-sm">
-            {links.map((label) => (
-              <li key={label} className={label === "Channel Partners" ? "group relative" : undefined}>
-                {label === "Channel Partners" ? (
+            {links.map((link) => (
+              <li key={link.label} className={link.label === "Channel Partners" ? "group relative" : undefined}>
+                {link.label === "Channel Partners" ? (
                   <>
                     <button
                       type="button"
@@ -54,7 +61,7 @@ export default function Header() {
                       onClick={() => setIsPartnersOpen((current) => !current)}
                       className="flex items-center gap-1 rounded border border-red-500 px-4 py-2 font-medium text-red-600"
                     >
-                      {label}
+                      {link.label}
                       <ChevronDown size={15} className="transition-transform group-hover:rotate-180" />
                     </button>
                     <ul className={`absolute left-0 top-full z-50 min-w-40 pt-2 ${isPartnersOpen ? "block" : "hidden group-hover:block group-focus-within:block"}`}>
@@ -73,8 +80,8 @@ export default function Header() {
                     </ul>
                   </>
                 ) : (
-                  <Link href="#" className="text-gray-700 transition hover:text-red-600">
-                    {label}
+                  <Link href={link.href ?? "#"} className="text-gray-700 transition hover:text-red-600">
+                    {link.label}
                   </Link>
                 )}
               </li>
@@ -86,9 +93,9 @@ export default function Header() {
       {isMenuOpen ? (
         <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-slate-300 xl:hidden bg-white w-full">
           <ul>
-            {links.map((label) => (
-              <li key={label} className="border-b border-slate-300 last:border-b-0">
-                {label === "Channel Partners" ? (
+            {links.map((link) => (
+              <li key={link.label} className="border-b border-slate-300 last:border-b-0">
+                {link.label === "Channel Partners" ? (
                   <>
                     <button
                       type="button"
@@ -96,7 +103,7 @@ export default function Header() {
                       onClick={() => setIsPartnersOpen((current) => !current)}
                       className="flex w-full items-center justify-center gap-1 py-2 text-[11px] leading-none text-[#202b2c] transition hover:bg-slate-50"
                     >
-                      {label}
+                      {link.label}
                       <ChevronDown size={13} className={isPartnersOpen ? "rotate-180" : undefined} />
                     </button>
                     {isPartnersOpen ? (
@@ -120,13 +127,13 @@ export default function Header() {
                   </>
                 ) : (
                   <Link
-                    href="#"
+                    href={link.href ?? "#"}
                     onClick={() => setIsMenuOpen(false)}
                     className={`block py-2 text-center text-[11px] leading-none transition hover:bg-slate-50 ${
-                      label === "Home" ? "text-[#c8242f]" : "text-[#202b2c]"
+                      link.label === "Home" ? "text-[#c8242f]" : "text-[#202b2c]"
                     }`}
                   >
-                    {label}
+                    {link.label}
                   </Link>
                 )}
               </li>

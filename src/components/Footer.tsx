@@ -8,9 +8,9 @@ const importantLinks = [
   { label: "ESG", href: "https://hindustanpencils.com/esg" },
   { label: "Media & News", href: "https://hindustanpencils.com/media-news" },
   { label: "Careers", href: "https://hppl-career.fiveonline.in/" },
-  { label: "Distributors", href: "/" },
-  { label: "Super Stockist", href: "/" },
-  { label: "Export", href: "https://hppl-export.fiveonline.in/" },
+  { label: "Distributors", href: "/distributors" },
+  { label: "Super Stockist", href: "/super-stockist" },
+  { label: "Export", href: "https://export.hindustanpencils.com" },
 
 ];
 
@@ -111,7 +111,7 @@ export default function Footer() {
         <div className="mt-6 text-center">
           <h3 className="text-sm font-bold text-slate-900">Follow us on</h3>
           <a
-            href="https://www.linkedin.com/company/hindustan-pencils-private-limited"
+            href="https://www.linkedin.com/company/hindustan-pencils-pvt-ltd/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Hindustan Pencils on LinkedIn"
@@ -124,7 +124,9 @@ export default function Footer() {
         <div className="my-7 h-px bg-slate-400" />
 
 <div className="justify-center items-center flex">
+  <Link href="https://hindustanpencils.com/" aria-label="Hindustan Pencils home" className="shrink-0">
         <Image src="/images/logo.png" alt="Hindustan Pencils" width={1536} height={382} className="h-auto w-[60%]" />
+        </Link>
 
 </div>
       </div>
@@ -135,7 +137,7 @@ export default function Footer() {
           <div>
             <h3 className="text-base font-bold text-slate-900">Follow us on</h3>
             <a
-              href="https://www.linkedin.com/company/hindustan-pencils-private-limited"
+              href="https://www.linkedin.com/company/hindustan-pencils-pvt-ltd/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Hindustan Pencils on LinkedIn"

@@ -7,7 +7,7 @@ const importantLinks = [
   { label: "Our Brands", href: "https://hindustanpencils.com/our-brands" },
   { label: "ESG", href: "https://hindustanpencils.com/esg" },
   { label: "Media & News", href: "https://hindustanpencils.com/media-news" },
-  { label: "Careers", href: "https://hppl-career.fiveonline.in/" },
+  { label: "Careers", href: "https://career.hindustanpencils.com" },
   { label: "Distributors", href: "/distributors" },
   { label: "Super Stockist", href: "/super-stockist" },
   { label: "Export", href: "https://export.hindustanpencils.com" },
@@ -299,7 +299,7 @@ export default function Footer() {
           <div>
             <h3 className="text-base font-bold text-slate-900">Follow us on</h3>
             <a
-              href="https://www.linkedin.com/company/hindustan-pencils-private-limited"
+              href="https://www.linkedin.com/company/hindustan-pencils-pvt-ltd/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Hindustan Pencils on LinkedIn"

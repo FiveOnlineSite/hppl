@@ -7,7 +7,7 @@ const importantLinks = [
   { label: "Our Brands", href: "https://hindustanpencils.com/our-brands" },
   { label: "ESG", href: "https://hindustanpencils.com/esg" },
   { label: "Media & News", href: "https://hindustanpencils.com/media-news" },
-  { label: "Careers", href: "https://career.hindustanpencils.com" },
+  { label: "Career", href: "https://career.hindustanpencils.com" },
   { label: "Distributors", href: "/distributors" },
   { label: "Super Stockist", href: "/super-stockist" },
   { label: "Export", href: "https://export.hindustanpencils.com" },

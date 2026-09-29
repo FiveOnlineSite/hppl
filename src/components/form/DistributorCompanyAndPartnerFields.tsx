@@ -42,6 +42,7 @@ export function DistributorCompanyAndPartnerFields() {
           name="company_pincode"
           pattern="[0-9]{6}"
           title="Enter a valid 6-digit PIN code"
+          required
         />
 
         

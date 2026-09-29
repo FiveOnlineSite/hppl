@@ -49,7 +49,7 @@ export default function SuperStockistPage() {
           <FormSelect label="Experience" name="experience" options={EXPERIENCE_OPTIONS} />
           <FormTextarea label="Work Profile" name="work_profile" />
         
-          <FormTextarea label="Current Address" name="current_address" />
+          <FormTextarea label="Current Address" name="current_address" required />
           <StateCityFields
             stateName="current_state"
             stateLabel="Select State"
@@ -57,7 +57,7 @@ export default function SuperStockistPage() {
             cityLabel="Select City"
             required
           />
-          <FormInput label="Pin Code" name="current_pincode" pattern={PIN_PATTERN} title={PIN_TITLE} />
+          <FormInput label="Pin Code" name="current_pincode" pattern={PIN_PATTERN} title={PIN_TITLE} required />
         </FormSection>
 
         <FormSection title="Company Information">

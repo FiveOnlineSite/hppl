@@ -31,6 +31,7 @@ export function InquiryFormShell({
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [attemptedSubmit, setAttemptedSubmit] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -39,17 +40,30 @@ export function InquiryFormShell({
     const data = formDataToObject(new FormData(form));
 
     setStatus("submitting");
+    setErrorMessage("");
     try {
       const res = await fetch(action, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error("Request failed");
+      if (!res.ok) {
+        const responseBody = await res.json().catch(() => null);
+        throw new Error(
+          typeof responseBody?.message === "string"
+            ? responseBody.message
+            : "Something went wrong submitting the form. Please try again.",
+        );
+      }
       setStatus("success");
       form.reset();
-    } catch {
+    } catch (error) {
       setStatus("error");
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong submitting the form. Please try again.",
+      );
     }
   }
 
@@ -76,6 +90,7 @@ export function InquiryFormShell({
           onClick={() => {
             setStatus("idle");
             setAttemptedSubmit(false);
+            setErrorMessage("");
             onReset?.();
           }}
           className="mt-6 inline-flex items-center hover:cursor-pointer rounded-full border border-emerald-600 bg-white px-5 py-2.5 text-sm font-medium text-emerald-700 shadow-sm transition hover:bg-emerald-100"
@@ -96,7 +111,7 @@ export function InquiryFormShell({
 
       {status === "error" && (
         <p className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          Something went wrong submitting the form. Please try again.
+          {errorMessage}
         </p>
       )}
 
@@ -112,6 +127,8 @@ export function InquiryFormShell({
           type="reset"
           onClick={() => {
             setAttemptedSubmit(false);
+            setErrorMessage("");
+            setStatus("idle");
             onReset?.();
           }}
           className="inline-flex items-center rounded-full border border-slate-300 px-6 py-2.5 text-sm font-semibold text-slate-700 hover:cursor-pointer transition hover:bg-slate-50"

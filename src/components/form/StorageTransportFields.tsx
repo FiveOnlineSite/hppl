@@ -30,7 +30,7 @@ export function StorageTransportFields() {
       {transportFacility === "Yes" && (
         <>
           <FormInput label="Vehicle's Model" name="vehicle_model" />
-          <FormInput label="Number of Vehicles" name=" no_of_vehicles" type="number" min={0} />
+          <FormInput label="Number of Vehicles" name="no_of_vehicles" type="number" min={0} />
         </>
       )}
     </>

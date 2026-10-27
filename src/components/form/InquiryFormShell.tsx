@@ -115,11 +115,11 @@ export function InquiryFormShell({
         </p>
       )}
 
-      <div className="flex items-center gap-3 p-4 sm:p-5">
+      <div className="flex flex-col gap-3 p-1 pt-0 sm:flex-row sm:items-center sm:p-5">
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex items-center rounded-full bg-red-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 hover:cursor-pointer hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-red-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 hover:cursor-pointer hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
         >
           {status === "submitting" ? "Submitting..." : submitLabel}
         </button>
@@ -131,7 +131,7 @@ export function InquiryFormShell({
             setStatus("idle");
             onReset?.();
           }}
-          className="inline-flex items-center rounded-full border border-slate-300 px-6 py-2.5 text-sm font-semibold text-slate-700 hover:cursor-pointer transition hover:bg-slate-50"
+          className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-slate-300 px-6 py-2.5 text-sm font-semibold text-slate-700 hover:cursor-pointer transition hover:bg-slate-50 sm:w-auto"
         >
           Reset
         </button>

@@ -8,7 +8,7 @@ const importantLinks = [
   { label: "ESG", href: "https://hindustanpencils.com/esg" },
   { label: "Media & News", href: "https://hindustanpencils.com/media-news" },
   { label: "Career", href: "https://career.hindustanpencils.com" },
-  { label: "Distributors", href: "/distributors" },
+  { label: "Distributors", href: "/distributor" },
   { label: "Super Stockist", href: "/super-stockist" },
   { label: "Export", href: "https://export.hindustanpencils.com" },
 
@@ -33,8 +33,8 @@ export default function Footer() {
   return (
     <footer className="w-full bg-[#e9e9e7]">
       {/* Mobile layout (below md) */}
-      <div className="px-6 py-10 md:hidden pb-18">
-        <div className="grid grid-cols-2 gap-6">
+      <div className="px-5 py-10 pb-10 md:hidden sm:px-6">
+        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 sm:gap-6">
           <div>
             <h3 className="text-base font-bold text-slate-900">Important Links</h3>
             <ul className="mt-3 space-y-2">
@@ -132,7 +132,7 @@ export default function Footer() {
       </div>
 
       {/* Tablet layout (md to just below xl) */}
-      <div className="hidden px-8 py-12 md:block xl:hidden pb-18">
+      <div className="hidden px-8 py-12 pb-12 md:block xl:hidden">
         <div className="grid grid-cols-2 gap-8">
           <div>
             <h3 className="text-base font-bold text-slate-900">Follow us on</h3>

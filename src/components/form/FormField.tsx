@@ -8,7 +8,7 @@ type LabelProps = {
 
 function FieldLabel({ label, required, htmlFor }: LabelProps) {
   return (
-    <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-semibold text-slate-800">
+    <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-semibold leading-5 text-slate-800">
       {label}
       {required && <span className="ml-0.5 text-red-600">*</span>}
     </label>
@@ -16,7 +16,7 @@ function FieldLabel({ label, required, htmlFor }: LabelProps) {
 }
 
 export const inputClasses =
-  "w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition hover:border-slate-400 focus:border-red-600 focus:ring-4 focus:ring-red-100";
+  "min-h-11 w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-base text-slate-900 shadow-sm outline-none transition hover:border-slate-400 focus:border-red-600 focus:ring-4 focus:ring-red-100 sm:text-sm";
 
 type FormInputProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
@@ -107,7 +107,7 @@ export function FormRadioGroup({
         {options.map((opt) => (
           <label
             key={opt}
-            className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-300 px-4 py-1.5 text-sm text-slate-700 transition has-[:checked]:border-red-600 has-[:checked]:bg-red-50 has-[:checked]:text-red-800 hover:border-slate-400"
+            className="flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-slate-300 px-4 py-1.5 text-sm text-slate-700 transition has-[:checked]:border-red-600 has-[:checked]:bg-red-50 has-[:checked]:text-red-800 hover:border-slate-400"
           >
             <input
               type="radio"
@@ -140,7 +140,7 @@ export function FormCheckboxGroup({ label, name, options }: CheckboxGroupProps) 
         {options.map((opt) => (
           <label
             key={opt}
-            className="flex cursor-pointer items-center gap-2 rounded-full border border-slate-300 px-4 py-1.5 text-sm text-slate-700 transition has-[:checked]:border-red-600 has-[:checked]:bg-red-50 has-[:checked]:text-red-800 hover:border-slate-400"
+            className="flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-slate-300 px-4 py-1.5 text-sm text-slate-700 transition has-[:checked]:border-red-600 has-[:checked]:bg-red-50 has-[:checked]:text-red-800 hover:border-slate-400"
           >
             <input
               type="checkbox"
@@ -163,13 +163,15 @@ export function FormSection({
   title: string;
   children: React.ReactNode;
 }) {
+  const titleId = `form-section-${title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}`;
+
   return (
-    <fieldset className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-      <legend className="mb-6 flex items-center gap-3 px-1 text-base font-bold uppercase tracking-wide text-slate-900">
+    <section aria-labelledby={titleId} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-8">
+      <div className="mb-5 flex items-center gap-3 border-b border-slate-100 pb-3 sm:mb-6 sm:pb-4">
         <span aria-hidden="true" className="h-5 w-1 shrink-0 rounded-full bg-red-600" />
-        {title}
-      </legend>
+        <h2 id={titleId} className="m-0 text-sm font-bold uppercase tracking-wide text-slate-900 sm:text-base">{title}</h2>
+      </div>
       <div className="grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2">{children}</div>
-    </fieldset>
+    </section>
   );
 }

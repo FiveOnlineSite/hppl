@@ -14,7 +14,7 @@ const links = [  { label: "Home", href: "https://hindustanpencils.com/" },
   { label: "Channel Partners" },
   { label: "Contact", href: "https://hindustanpencils.com/contact" },];
 const channelPartnerLinks = [
-  { label: "Distributors", href: "/distributors" },
+  { label: "Distributors", href: "/distributor" },
   { label: "Super Stockist", href: "/super-stockist" },
   { label: "Export", href: "https://export.hindustanpencils.com" },
 ];
@@ -101,7 +101,7 @@ export default function Header() {
                       type="button"
                       aria-expanded={isPartnersOpen}
                       onClick={() => setIsPartnersOpen((current) => !current)}
-                      className="flex w-full items-center justify-center gap-1 py-2 text-[11px] leading-none text-[#202b2c] transition hover:bg-slate-50"
+                      className="flex min-h-11 w-full items-center justify-center gap-1 px-4 py-3 text-sm font-medium text-[#202b2c] transition hover:bg-slate-50"
                     >
                       {link.label}
                       <ChevronDown size={13} className={isPartnersOpen ? "rotate-180" : undefined} />
@@ -116,7 +116,7 @@ export default function Header() {
                                 setIsPartnersOpen(false);
                                 setIsMenuOpen(false);
                               }}
-                              className="block py-2 text-center text-[11px] text-slate-600 hover:text-red-600"
+                              className="block min-h-11 px-4 py-3 text-center text-sm text-slate-600 hover:text-red-600"
                             >
                               {link.label}
                             </Link>
@@ -129,7 +129,7 @@ export default function Header() {
                   <Link
                     href={link.href ?? "#"}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`block py-2 text-center text-[11px] leading-none transition hover:bg-slate-50 ${
+                    className={`block min-h-11 px-4 py-3 text-center text-sm font-medium leading-none transition hover:bg-slate-50 ${
                       link.label === "Home" ? "text-[#c8242f]" : "text-[#202b2c]"
                     }`}
                   >
